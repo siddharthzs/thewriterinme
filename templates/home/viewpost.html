@@ -1,0 +1,217 @@
+{% extends "home/base.html" %}
+{% load markdown_extras %}
+{% block content %}
+<style>
+.site-wrapper{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-main {
+    padding-bottom: 4vw;
+    background: #fff;
+    flex-grow: 1;
+    z-index: 100;
+}
+.outer{
+  position: relative;
+  padding: 0 4vw;
+}
+
+.inner{
+  margin: 0 auto;
+  max-width: 1340px;
+  width: 100%;
+}
+
+.post-full{
+  position: relative;
+  z-index: 50;
+}
+
+.post-full-header{
+  margin: 0 auto;
+  padding: 6vw 3vw 3vw;
+  max-width: 1040px;
+  text-align: center;
+}
+
+.post-full-meta{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color: #738a94;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.post-full-meta-date{
+  color: #3eb0ef;
+}
+.date-divider{
+  display: inline-block;
+  margin: 0 6px 1px;
+}
+a{
+  color: #26a8ed;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+
+.post-full-title{
+  margin: 0;
+  color: #090a0b;
+  font-size: 3.8rem;
+}
+
+h1{
+  font-size: 5rem;
+  font-weight: 700;
+}
+
+
+.post-full-image{
+  background: #c5d2d9 50%;
+  background-size: cover;
+  height: 800px;
+  border-radius: 0;
+
+
+}
+
+.post-full-content{
+  position: relative;
+  margin: -10vw auto;
+  min-height: 230px;
+  font-family: Georgia,serif;
+  font-size: 1.1rem;
+  line-height: 2.2rem;
+  background: #fff;
+  max-width: 1040px;
+  padding: 5rem;
+  z-index: 1;
+
+}
+
+.author-card, .post-full-footer{
+  display: flex;
+  align-items: center;
+}
+
+.post-full-footer{
+  justify-content: space-between;
+  margin: 10vw auto;
+  padding: 2vw 3vw 2vw 3vw;
+  
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  
+}
+
+.author-card .author-profile-image{
+  margin-right: 15px;
+  width: 70px;
+  height: 70px;
+}
+
+.author-profile-image{
+  border-radius: 100%;
+  object-fit: cover;
+  
+}
+
+.author-card-name{
+  margin: 0 0 2px;
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+
+
+.author-card-name a{
+  color: #15171a;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.author-card-content p{
+  margin: 0;
+  color: #0a0f11;
+  line-height: 1.3em;
+  font-size: .9rem;
+}
+
+.post-full-footer-right{
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+
+.author-card-button{
+  display: block;
+  padding: 9px 16px;
+  border: 1px solid #aebbc1;
+  color: #738a94;
+  font-size: 1.1rem;
+  line-height: 1;
+  font-weight: 500;
+  border-radius: 20px;
+  transition: all .2s ease;
+}
+
+@media (max-width: 1170px) {
+  .post-full-image{
+  
+  }
+
+  .post-full-content{
+    padding: 5vw 7vw 0;
+  }
+  
+}
+
+
+
+</style>
+<div class="site-wrapper">
+<main id='site-main' class='site-main outer' role='main'>
+<div class="inner">
+  <article class="post-full post">
+    <header class="post-full-header">
+      <section class="post-full-meta">
+        <time class="post-full-meta-date" datetime="2019-11-20">
+          {{ posts.date_posted }}
+        </time>
+        <span class="date-divider">/</span>
+        <a href="">{{ posts.tags }}</a>
+      </section>
+      <h1 class="post-full-title"> {{ posts.title }} </h1>
+    </header>
+    <figure class="post-full-image" style="background-image: url('{{ posts.img.url }}');">
+    </figure>
+    <section class="post-full-content">
+      {{ posts.content|markdown }}
+    </section>
+    <!-- Want to add discuss handler for comments, likes and .... -->
+    <footer class="post-full-footer">
+      <section class="author-card">
+        <img src="{{ posts.author.profile.image.url }}" alt="posts.author" class="author-profile-image">
+        <section class="author-card-content">
+          <h4 class="author-card-name">
+            <a href="{% url 'blog-profile' posts.author %}">{{ posts.author }}</a>
+          </h4>
+          <p>Siddharth is an astrophile, programmer, Indian, undergrade student at Lovely Professional University, and an overall a nice guy.</p>
+        </section>
+      </section>
+      <div class="post-full-footer-right">
+        <a href="{% url 'blog-profile' posts.author %}" class="author-card-button">Read More</a>
+      </div>
+    </footer>
+  </article>
+</div>
+</main>
+</div>
+
+
+{% endblock content %}

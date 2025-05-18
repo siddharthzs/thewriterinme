@@ -1,0 +1,53 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+ 
+    .register-content{
+        max-width: 900px;
+        
+        margin: 5vh 0 5vh 0;
+        background-color: #fff;
+        padding: 5vh; 
+     
+        font-size: 1rem;
+        overflow: hidden;
+ 
+        box-shadow: 0 0 15px 5px rgba(49,30,24,.5);
+    }
+
+    .register-content:hover{
+        box-shadow: 0 0 2px 1px rgba(49,30,24,.5);
+    }
+
+    #hint_id_password1, #hint_id_password2, #hint_id_username{
+        display: none;
+    }
+</style>
+
+<div class="container">
+<div class="mx-md-5 register-content">
+    <div class="content-section">
+        <form action="" method="post">
+             {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-5"> Join Today</legend>
+
+                {{ registerform|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-info">Create Account</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+            Already Have An Account? <a class="ml-2" href=""> Login In</a>
+            </small>
+        </div>
+    </div>
+</div>
+</div>
+    
+
+{% endblock content %}

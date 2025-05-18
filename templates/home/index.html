@@ -1,0 +1,341 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+<!-- Right Side bar -->
+<!-- Newsletter or Subscribe -->
+<!-- Events and Updates  -->
+
+<!-- Left Side bar -->
+<!-- Menubar maybe -->
+<style>
+    .parallex{
+        background-attachment: fixed;
+        
+    }
+
+    .site-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .site-header {
+        position: relative;
+        padding: 12px 0;
+        color: #fff;
+        background-color: #090a0b no repeat 50%;
+
+        display: flex;
+        height: 64vh;
+        width: 100vw;
+        padding: auto;
+        padding: 0 4vw;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background-image: url({% static 'stargazzing/simon.jpg' %});
+        background-size: cover;
+
+
+    }
+
+    .site-header-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10vw 4vw;
+        min-height: 200px;
+        max-height: 450px;
+        text-align: center;
+        width: 100%;
+        max-width: 980px;
+    }
+
+    .header-wrapper {
+        width: 100%;
+        padding: 10px;
+        background-color: #2b303b;
+        opacity: 0.9;
+        color: #eee;
+        margin-right: 1vw;
+    }
+
+
+    .site-title {
+        font-size: 3rem;
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .site-subtitle {
+        font-size: 2rem;
+        font-weight: 300;
+        letter-spacing: 1px;
+        opacity: .8;
+    }
+
+    .site-main {
+        z-index: 100;
+        flex-grow: 1;
+        position: relative;
+        padding: 0 4vw;
+    }
+
+    .inner{
+        margin: 0 auto;
+        max-width: 1240px;
+        width: 100%;
+        margin-top: -100px;
+    }
+
+    .post-feed{
+        
+        padding-top: 0;
+        display: flex;
+        position: relative;
+        flex-wrap: wrap;
+        margin: 0 -20px;
+        padding: 40px 0 0;
+    }
+
+    .post-card:nth-child(4n+1):not(.no-image){
+        flex: 1 1 100%;
+        flex-direction: row;
+    
+    }
+
+    .post-card{
+        display: flex;
+        overflow: hidden;
+        margin: 0 20px 40px;
+        min-height: 300px;
+        background: #fff 50%;
+        background-size: cover;
+        border-radius: 5px;
+        box-shadow: 8px 14px 38px rgba(39,44,49,0.4), 1px 3px 8px rgba(39,44,49,0.2);
+        transition: all .5s ease;
+        transition-delay: 0ms;
+        
+        flex: 1 1 300px;
+        flex-direction: column;
+    }
+    .post-card:hover{
+        box-shadow: 1px 4px 10px rgba(39,44,49,.06), 0 0 4px rgba(39,44,49,.03);
+    }
+
+    .post-card-image-link{
+        position: relative;
+        border-radius: 5px 5px 0 0;
+        display: block;
+        overflow: hidden;
+    }
+    .post-card:nth-child(4n+1):not(.no-image) .post-card-image-link{
+        position: relative;
+        flex: 1 1 auto;
+        border-radius: 5px 0 0 5px;
+    }
+
+    a{
+        color: #26a8ed;
+        text-decoration: none;
+        background-color: transparent;
+    }
+    a:hover{
+        text-decoration: none;
+        color: #26a8ed;
+    }
+    a:visited{
+        border: none;
+        text-decoration: none;
+    }
+
+
+    .post-card-image{
+  
+        background: #c5d2d9 no-repeat 50%;
+        background-size: cover;
+        height: 200px;
+        widows: auto;
+    
+    }
+    .post-card:nth-child(4n+1):not(.no-image) .post-card-image{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .post-card-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+       
+    }
+    .post-card:nth-child(4n+1):not(.no-image) .post-card-content{
+        flex: 0 1 475px;
+    }
+
+    .post-card-content-link{
+        position: relative;
+        display: block;
+        color: #15171a;
+        padding: 25px 25px 0;
+    }
+    .post-card:nth-child(4n+1):not(.no-image)  .post-card-content-link{
+        padding: 30px 40px 0;
+    }
+
+    .post-card-tags{
+        display: block;
+        margin-bottom: 4px;
+        color: #738a94;
+        font-size: 1.2rem;
+        line-height: 1.15em;
+        font-weight: 500;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+    }
+
+    .post-card-title{
+        margin-top: 0;
+        margin: 1.53m 0 .5em;
+        font-size: 2.6rem;
+    }
+
+    .post-card-excerpt{
+        font-family: Georgia, serif;
+    }
+
+    .post-card-excerpt p {
+        font-size: 1rem;
+        line-height: 1.55em;
+    }
+
+    .post-card-meta{
+        padding: 0 25px 25px;
+    }
+    .post-card:nth-child(4n+1):not(.no-image) .post-card-meta{
+        padding: 0 40px 30px;
+    }
+
+    .author-profile-image{
+        margin-right: 5px;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        object-fit: cover;
+    }
+
+    .post-card-author{
+        font-size:.8rem;
+        font-weight: 500;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+    }
+    
+
+   
+
+
+
+    @media (max-width: 500px) {
+ 
+        .site-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .site-subtitle {
+            font-size: 1rem;
+            font-weight: 100;
+        }
+
+        .post-card-title{
+            font-size: 2rem;
+        }
+    }
+
+
+    @media (max-width: 670px) {
+        .post-card:nth-child(4n+1):not(.no-image) .post-card-content{
+            flex: 0 1 375px;
+        }
+        .post-card{
+
+        }
+
+        .site-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .site-subtitle {
+            font-size: 1rem;
+            font-weight: 100;
+        }
+
+        .post-card-title{
+            font-size: 2rem;
+        }
+    }
+</style>
+<div class="site-wrapper">
+    <header class="site-header">
+        <div class="site-header-content">
+            <div class="header-wrapper">
+                <h1 class="site-title">Siddharth Choudhary</h1>
+                <h5 class="site-subtitle">I make dumb things. </h5>
+
+            </div>
+        </div>
+    </header>
+    <main class="site-main" id='site-main' role='main'>
+        <div class="inner">
+            <div class="post-feed">
+            <!-- Loop Now then,  -->
+            {% for p in posts %}
+            <article class="post-card">
+                <a class="post-card-image-link" href="{% url 'blog-viewpost' p.id %}">
+                    <div class="post-card-image" style="background-image:url( '{{ p.img.url }}' )"></div>
+                </a>
+                <div class="post-card-content">
+                    <a class="post-card-content-link" href="{% url 'blog-viewpost' p.id %}">
+                        <header class="post-card-header">
+                            <span class="post-card-tags">{{ p.tags}}</span>
+                            <h2 class="post-card-title">{{ p.title }}</h2>
+                        </header>
+                        <section class="post-card-excerpt">
+                            <p>
+                                {{ p.content|truncatewords:30 }}
+                            </p>
+                        </section>
+                    </a>
+                    <footer class="post-card-meta">
+                            <img src="{{ p.author.profile.image.url }}" alt="" class="author-profile-image">
+                            <span class="post-card-author">
+                                <a href="{% url 'blog-profile' p.author %}"> {{ p.author }}</a>
+                            </span>
+                    </footer>
+                </div>
+         
+            </article>
+       
+
+            {% endfor %}
+            </div>
+
+
+        </div>
+
+    </main>
+</div>
+
+
+{% endblock content %}
+
+

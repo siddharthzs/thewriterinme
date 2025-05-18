@@ -1,0 +1,35 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<style>
+.logout{
+    margin-top: 5vh;
+}
+
+</style>
+
+<div class="container">
+    <div class="logout">
+        <h2 class="mb-2 pb-2 border-bottom">You Have Been Logged Out!</h2>
+
+        <small><a href="">redirecting to home page in <i id='ct'>5</i> sec</a></small>
+
+    </div>
+</div>
+
+<script>
+    var n = 5
+    function pageRedirect(){
+        $('#ct').html(n);
+        console.log(n);
+        if(n == 0){
+            window.location.replace("http://127.0.0.1:8000/");
+        }
+        n=n-1;
+        setTimeout("pageRedirect()",1000)
+    }
+        setTimeout("pageRedirect()",1000)
+
+</script>
+
+{% endblock content %}

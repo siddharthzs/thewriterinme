@@ -1,0 +1,14 @@
+altgraph==0.17.2
+asgiref==3.2.3
+cmake==4.0.2
+Django==3.0.1
+django-crispy-forms==1.8.1
+future==0.18.2
+importlib_metadata==8.7.0
+macholib==1.15.2
+Markdown==3.8
+pillow==11.2.1
+pytz==2019.3
+six==1.15.0
+sqlparse==0.3.0
+zipp==3.21.0
